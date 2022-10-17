@@ -14,4 +14,6 @@ order by salary * months desc
 /* another solution */
 
 select max(salary * months),count(salary * months) from Employee  
-where (salary * months) = 108064  from Employee)
+where (salary * months) = max(salary * months) /*108064*/  from Employee)
+
+
