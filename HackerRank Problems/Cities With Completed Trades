@@ -1,0 +1,15 @@
+/*
+
+link     :https://datalemur.com/questions/completed-trades?fbclid=IwAR0WydmL-x0BxpDGRlI-o0CzyPQBVlEaJ24PgTvblix6chqOs6LZv1gc1zo
+author   :Mohamed Tarek
+
+*/
+
+
+Select u.city, count (t.order_id) as 	total_orders 
+from trades t inner join  users u
+on t.user_id = u.user_id
+WHERE t.status = 'Completed'
+Group by u.city
+Order by total_orders desc
+limit 3
