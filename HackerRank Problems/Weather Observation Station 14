@@ -1,0 +1,15 @@
+/*
+link     :https://www.hackerrank.com/challenges/weather-observation-station-14/problem
+
+author   :Mohamed Tarek
+*/
+
+select cast (round (max (lat_n) ,4) as decimal (10,4))
+from station 
+where lat_n <137.23455
+
+/*  note :
+When you ROUND() with T-SQL, it leaves trailing 0’s after the rounded number.
+e.g. 120.02 vs 120.020000 where the latter answer is not correct.
+He casts it as a DECIMAL(10,2) because the “2” will ensure that there will only be 2 digits after the decimal point.
+*/
