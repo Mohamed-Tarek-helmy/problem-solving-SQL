@@ -1,0 +1,64 @@
+create view sales_view as 
+select 
+    prod_name ,
+    country_name , 
+    channel_id ,
+    substr(calendar_quarter_desc,6,2) quarter ,
+    sum(amount_sold) amount_sold , 
+    sum(quantity_sold) quantity_sold 
+
+from sh.sales , sh.times , sh.customers ,sh.countries ,sh.products 
+
+where sales.time_id = times.time_id
+and   sales.prod_id = products.prod_id
+and   sales.cust_id = customers.cust_id
+and   customers.country_id =countries.country_id
+
+group by prod_name ,
+    country_name , 
+    channel_id ,
+    substr(calendar_quarter_desc,6,2);
+
+
+
+
+
+
+
+    select 
+        PROD_NAME, channel_id,
+        sum( AMOUNT_SOLD) 
+        from sales_view group by prod_name, channel_id;
+ 
+select prod_name , 
+sum(case when channel_id = 3 then amount_sold end ) as "DiRECT_SALES", 
+sum(case when channel_id = 4 then amount_sold end ) as "INTERNET_SALES", 
+sum(case when channel_id = 5 then amount_sold end ) as "CATALOG_SALES", 
+sum(case when channel_id = 9 then amount_sold end ) as "TELESALES"
+    FROM  SALES_VIEW GROUP BY PROD_NAME ORDER BY  PROD_NAME  ;
+
+
+SELECT * FROM  (
+SELECT PROD_NAME, QUARTER, CHANNEL_ID , AMOUNT_SOLD FROM SALES_VIEW
+) 
+PIVOT (SUM (AMOUNT_SOLD) FOR CHANNEL_ID IN (3, 4,5,9));
+
+
+
+
+
+SELECT * FROM  (
+SELECT PROD_NAME, QUARTER, CHANNEL_ID , AMOUNT_SOLD FROM SALES_VIEW
+) 
+PIVOT (SUM (AMOUNT_SOLD) FOR CHANNEL_ID IN (3, 4,5,9));
+
+
+    select * from SALES_VIEW;
+
+SELECT * FROM  (
+SELECT PROD_NAME, QUARTER, CHANNEL_ID , AMOUNT_SOLD, QUANTITY_SOLD FROM SALES_VIEW
+) VS
+PIVOT (SUM (AMOUNT_SOLD)  SUMQ , SUM(QUANTITY_SOLD)  QUAIN FOR (CHANNEL_ID , QUARTER ) IN ((3,'02'), (4,'01'))) 
+ORDER BY PROD_NAME;
+
+
