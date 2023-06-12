@@ -1,7 +1,7 @@
 
-
+/*
 https://www.hackerrank.com/challenges/the-pads/problem?isFullScreen=true
-
+*/
 
 SELECT 
 name || '(' || substr(occupation,1,1)|| ')' 
