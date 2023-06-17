@@ -64,8 +64,7 @@ VALUES (19, 'David Brown', 'david.brown@example.com');
 
 INSERT INTO customers (customer_id, customer_name, customer_email)
 VALUES (20, 'Karen Lee', 'karen.lee@example.com');
-INSERT INTO customers (customer_id, customer_name, customer_email)
-VALUES (20, 'Karen Lee', 'karen.lee@example.com');
+
 
 -- Create the orders table
 CREATE TABLE orders_customer (
