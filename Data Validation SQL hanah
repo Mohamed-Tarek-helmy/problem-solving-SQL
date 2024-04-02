@@ -1,0 +1,8 @@
+/*
+1- check for duplicate values in a specific column using SQL in HANA.
+*/
+
+SELECT "ColumnName", COUNT(*) 
+FROM "TableName"
+GROUP BY "ColumnName"
+HAVING COUNT(*) > 1
